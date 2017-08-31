@@ -1,0 +1,32 @@
+<md-toolbar color="primary">Dota Day</md-toolbar>
+<!--<hello name="{{ name }}"></hello>-->
+<md-card>
+  <h2>Enter your DOTA ID</h2>
+   <form novalidate  [formGroup]="form" >
+  <md-input-container>
+  <input formControlName="dotaId" placeholder="DOTA ID"  maxlength="9" mdInput>
+</md-input-container>
+<button  [disabled]="!form.valid" color="primary" (click)="initializeData()"  md-raised-button>OK</button>
+<button color="primary" (click)="setTestDotaId()"  md-raised-button>Use test DOTA ID</button>
+<button color="primary" (click)="resetValues()"  md-raised-button>Clear</button>
+    </form>
+
+
+</md-card>
+<div  *ngIf="isDataLoaded">
+<h1  style="padding:15px"> You should play on this day: {{selectedDay}} </h1>
+<h1 style="padding:20px">WIN RATE</h1>
+<div *ngIf="isDataLoaded">
+<md-card>
+  <img [src]="profilePic"/> <br> Estimate MMR {{estimateMMR}}
+</md-card>
+<md-card>Monday  {{ calculatedData[1] | percent:'1.1-2'}} - {{ weekDayWin[1] }} / {{( weekDayLose[1]+weekDayWin[1])}}</md-card>
+<md-card>Tuesday {{ calculatedData[2] | percent:'1.1-2'}} - {{ weekDayWin[2] }} / {{( weekDayLose[2]+weekDayWin[2])}}</md-card>
+<md-card>Wednesday {{ calculatedData[3] | percent:'1.1-2'}} - {{ weekDayWin[3] }} / {{( weekDayLose[3]+weekDayWin[3])}} </md-card>
+<md-card>Thursday {{ calculatedData[4] | percent:'1.1-2'}} - {{ weekDayWin[4] }} / {{( weekDayLose[4]+weekDayWin[4])}}</md-card>
+<md-card>Friday {{ calculatedData[5] | percent:'1.1-2'}} - {{ weekDayWin[5] }} / {{( weekDayLose[5]+weekDayWin[5])}}</md-card>
+<md-card>Saturday {{ calculatedData[6] | percent:'1.1-2'}} - {{ weekDayWin[6] }} / {{( weekDayLose[6]+weekDayWin[6])}}</md-card>
+<md-card>Sunday {{ calculatedData[0] | percent:'1.1-2'}} - {{ weekDayWin[0] }} / {{( weekDayLose[0]+weekDayWin[0])}}</md-card>
+<div>
+  <md-card>Based on your last {{ totalGames}} games</md-card>
+</div>
